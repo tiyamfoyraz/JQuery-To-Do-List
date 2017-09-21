@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+   
+   <title>To Do List</title>
+   
+    <meta charset="utf-8">
+    
+    <!-- Mobile first -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+    <!-- Bootstrap CDN -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    
+    <!--Google Font CDN -->
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Josefin+Sans|Open+Sans|PT+Sans" rel="stylesheet">
+    
+    <!--FontAwesome CDN -->
+     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+   
+    <!--  Animate CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.css" />
+   
+    <!--Custom CSS-->
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+</head>
+
+
+<body>
+<div class="overlay"></div>
+   <div class="container" id="reduceWidth">
+       <div class="row">
+       
+       <!-- title -->
+          <div class="title wow fadeIn">
+              <div class="col-sm-12">
+               <h1>To Do List.</h1>
+              </div>
+          </div>
+          
+       <!-- form -->         
+          <div class="col-sm-12 content">
+            <div class="col-sm-9">
+               <form class="form-horizontal wow slideInLeft">
+                  <div class="form-group">
+                    <input type="text" class="form-control" id="inputItem" placeholder="Add Your To Do">
+                  </div>
+               </form>
+           </div>
+           
+       <!--  button -->
+            <div class="col-sm-3 btn_xs   wow slideInRight">
+                <button class="btn btn-default btnStyle" id="addItem">Add To Do.</button>
+            </div>
+          </div>
+        
+       <!-- to do list -->
+          <div class="col-sm-12 ToDoList">
+              <ul id="ToDoItems"></ul>
+          </div>
+       </div>
+   </div>
+   
+   
+   
+       <div class="footer">
+        
+        <hr width="300px" class="divider">
+             <p class="credits">Credits To: </p>
+              <div class="MyImg">
+                  <img src="my_img.jpg" alt="MyImg" class="img-circle">
+              </div>
+
+              <p class="name">Tiyam Foyraz</p>
+          
+          <hr width="300px" class="divider">
+    </div>
+  
+  
+  
+  
+  
+  
+   
+    
+    
+    
+ 
+    
+
+    <!-- JQuery CDN -->
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.min.js"
+      integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+      crossorigin="anonymous">
+    </script>
+    
+    <!--  JQuery color animation CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-color/2.1.2/jquery.color.min.js"></script>
+    
+    <!-- JQuery Custom Styling -->
+    <script>
+        
+          $(document).ready(function(){
+              // Insert jQuery
+              
+              
+               $('#addItem').on('click',addItem);
+               $('#ToDoItems').on('change', '.checkBoxStyle' ,completeItem); //change event only in checkbox..
+               $('#ToDoItems').on('click', '.deleteIcon' ,deleteItem);
+               $('#inputItem').on('keypress', function(e){
+                   if(e.keyCode == 13){
+                       addItem();
+                       e.preventDefault();
+                   }
+               });
+
+              
+                   function addItem(e){
+                                              
+                       var ItemValue  = $('#inputItem').val();
+                       $('#ToDoItems').append('<li><input class="checkBoxStyle" type="checkbox"><span class="ListText">' + ItemValue + '</span><i class="fa fa-trash-o deleteIcon"></i></li>');  
+                       
+                       if(ItemValue.length===0){
+                           alert("Please Enter Your To Do.");
+                           $('.deleteIcon').parent().remove();
+                       }
+                       else if(ItemValue.length>0){
+                           $('.deleteIcon').parent().show();
+                           
+                           
+                       }
+                   }
+              
+              
+                  function deleteItem(){
+                    $(this).parent().remove();  
+                    }
+              
+                  function completeItem(){
+                     $(this).parent().toggleClass('line_through');
+                    }
+              
+         });
+
+    </script>
+    
+    <!-- Bootstrap JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous">
+    </script>
+
+    <!--WOWjs CDN-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.js"></script>
+    <script src="js/wow.min.js"></script>
+    <script>
+        new WOW().init();
+    </script>
+    
+</body>
+</html>
